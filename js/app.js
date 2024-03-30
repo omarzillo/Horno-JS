@@ -27,7 +27,6 @@ window.onload = () => {
             case 'cocinando':
                 reproducirVideo('horno-cocinando');
                 reproducirSonido('timer', true);
-
                 cuandoTerminaAvanzarA('tarta-lista');
                 break;
             case 'tarta-lista':
@@ -57,7 +56,7 @@ window.onload = () => {
                 bloquearPuerta(false);
                 reproducirVideo('horno-tarta-quemada');
                 loopear();
-
+                break;
             case 'retirar-lista':
                 //reproducir sonido de puerta abriendose 
                 reproducirSonido('puerta-con-tarta', false);
@@ -73,10 +72,8 @@ window.onload = () => {
                 bloquearPuerta(true);
                 reproducirVideo('horno-retirar-quemada');
                 reiniciar();
+                break;
         }
-
-
-
     }
 
     let sonido;
@@ -92,7 +89,7 @@ window.onload = () => {
         videoHornoActual.classList.add("hidden");
     }
     function reproducirVideo(nombreVideo) {
-        videoHornoActual.src = `video/${nombreVideo}.webm` //cambia el src por el video que le pasemos
+        videoHornoActual.src = `video/${nombreVideo}.webm`  //cambia el src por el video que le pasemos
         videoHornoActual.play();
     }
     function actualizarEstadoA(estadoNuevo) {
@@ -111,7 +108,7 @@ window.onload = () => {
     function detenerSonido() {
         sonido.pause();
     }
-    function loopear(tiempo) {
+    function loopear(time) {
         videoHornoActual.loop = true;
         if (time != undefined) {
             setTimeout(() => {
@@ -147,7 +144,7 @@ window.onload = () => {
         if (dataRecibida.deltaY < 0 && videoHornoActual.playbackRate < MAX_PLAYBACK_RATE) {
             rotarPerilla('derecha');
             videoHornoActual.playbackRate = videoHornoActual.playbackRate + 0.5;
-        } else if (dataRecibida.deltaY > 0 && videoHornoActual.playbackRate > MIN_PLAYBACK_RATE); {
+        } else if (dataRecibida.deltaY > 0 && videoHornoActual.playbackRate > MIN_PLAYBACK_RATE) {
             rotarPerilla('izquierda');
             videoHornoActual.playbackRate = videoHornoActual.playbackRate - 0.5;
         }
